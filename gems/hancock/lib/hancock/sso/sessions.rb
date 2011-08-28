@@ -51,18 +51,19 @@ module Hancock
         @user = ::Hancock::User.authenticate(params['email'], params['password'])
         login_as(@user)
         ensure_authenticated
-        oidreq = session[:hancock_server_last_oidreq]
-        oidreq.identity = oidreq.claimed_id = url_for_user
-        oidresp = oidreq.answer(true, nil, oidreq.identity)
-        sreg_data = {
-          'last_name'  => session_user.last_name,
-          'first_name' => session_user.first_name,
-          'email'      => session_user.email,
-          'username' => session_user.email,
-          'nickname' => session_user.email
-        }
-        oidresp.add_extension(OpenID::SReg::Response.new(sreg_data))
-        render_response(oidresp)
+        if oidreq = session[:hancock_server_last_oidreq]
+          oidreq.identity = oidreq.claimed_id = url_for_user
+          oidresp = oidreq.answer(true, nil, oidreq.identity)
+          sreg_data = {
+            'last_name'  => session_user.last_name,
+            'first_name' => session_user.first_name,
+            'email'      => session_user.email,
+            'username' => session_user.email,
+            'nickname' => session_user.email
+          }
+          oidresp.add_extension(OpenID::SReg::Response.new(sreg_data))
+          render_response(oidresp)
+        end
       end
 
       app.get '/sso/logout' do
