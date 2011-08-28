@@ -1,0 +1,18 @@
+%fieldset
+  %legend Signup
+  %form{:action => '/sso/signup', :method => 'POST'}
+    %label{:for => 'email'} 
+      Email:
+      %input{:type => 'text', :name => 'email'}
+      %br
+    %label{:for => 'first_name'} 
+      First name:
+      %input{:type => 'text', :name => 'first_name'}
+      %br
+    %label{:for => 'last_name'} 
+      Last name:
+      %input{:type => 'text', :name => 'last_name'}
+      %br
+    %input{:type => 'submit', :value => 'Signup'}
+    or
+    %a{:href => '/sso/login'} Login
