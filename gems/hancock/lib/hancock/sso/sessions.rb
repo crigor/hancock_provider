@@ -63,6 +63,8 @@ module Hancock
           }
           oidresp.add_extension(OpenID::SReg::Response.new(sreg_data))
           render_response(oidresp)
+        else
+          redirect session_return_to || '/'
         end
       end
 
