@@ -1,18 +1,23 @@
-%fieldset
-  %legend Signup
-  %form{:action => '/sso/signup', :method => 'POST'}
-    %label{:for => 'email'} 
-      Email:
-      %input{:type => 'text', :name => 'email'}
-      %br
-    %label{:for => 'first_name'} 
-      First name:
-      %input{:type => 'text', :name => 'first_name'}
-      %br
-    %label{:for => 'last_name'} 
-      Last name:
-      %input{:type => 'text', :name => 'last_name'}
-      %br
-    %input{:type => 'submit', :value => 'Signup'}
-    or
-    %a{:href => '/sso/login'} Login
+%form{:action => '/sso/signup', :method => 'POST'}
+  %fieldset
+    %legend Signup
+    .clearfix
+      %label{:for => 'email'}
+        Email:
+      .input
+        %input{:type => 'text', :name => 'email', :class => 'xlarge'}
+    .clearfix
+      %label{:for => 'first_name'}
+        First name:
+      .input
+        %input{:type => 'text', :name => 'first_name', :class => 'xlarge'}
+    .clearfix
+      %label{:for => 'last_name'}
+        Last name:
+      .input
+        %input{:type => 'text', :name => 'last_name', :class => 'xlarge'}
+    .actions
+      %button{:type => 'submit', :class => 'btn primary'}
+        Signup
+      or
+      %a{:href => '/sso/login', :class => 'btn'} Login

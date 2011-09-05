@@ -1,14 +1,19 @@
-%fieldset
-  %legend You need to log in, buddy.
-  %form{:action => '/sso/login', :method => 'POST'}
-    %label{:for => 'email'} 
-      Email:
-      %input{:type => 'text', :name => 'email'}
-      %br
-    %label{:for => 'password'} 
-      Password:
-      %input{:type => 'password', :name => 'password'}
-      %br
-    %input{:type => 'submit', :value => 'Login'}
-    or
-    %a{:href => '/sso/signup'} Signup
+%form{:action => '/sso/login', :method => 'POST'}
+  %fieldset
+    %legend
+      Sign in
+    .clearfix
+      %label{:for => 'email'}
+        Email:
+      .input
+        %input{:type => 'text', :name => 'email', :class => "xlarge"}
+    .clearfix
+      %label{:for => 'password'}
+        Password:
+      .input
+        %input{:type => 'password', :name => 'password', :class => "xlarge"}
+    .actions
+      %button{:type => 'submit', :class => "btn primary"}
+        Login
+      or
+      %a{:href => '/sso/signup', :class => "btn"} Signup
