@@ -7,15 +7,15 @@ module Hancock
     module Helpers
       def login_as(user)
         if user.nil?
-          session.delete(:hancock_server_user_id)
+          session.delete("hancock_server_user_id")
         else
-          session[:hancock_server_user_id] = user.id
+          session["hancock_server_user_id"] = user.id
         end
       end
 
       def session_user
-        session[:hancock_server_user_id].nil? ?
-          nil : ::Hancock::User.get(session[:hancock_server_user_id])
+        session["hancock_server_user_id"].nil? ?
+          nil : ::Hancock::User.get(session["hancock_server_user_id"])
       end
 
       def session_return_to
@@ -23,7 +23,7 @@ module Hancock
       end
 
       def session_cleanup
-        session.reject! { |key,value| key != :hancock_server_user_id }
+        session.reject! { |key,value| key != "hancock_server_user_id" }
       end
 
       def ensure_authenticated
