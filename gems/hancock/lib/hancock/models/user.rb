@@ -45,7 +45,7 @@ module Hancock
     def encrypt_password
       return if password.blank?
       @salt = Digest::SHA1.hexdigest("--#{Guid.new.to_s}}--email--") if new?
-      @crypted_password = encrypt(password)
+      self.crypted_password = encrypt(password)
     end
 
     validates_present        :password, :if => proc{|m| m.password_required?}
@@ -59,12 +59,12 @@ module Hancock
     end
 
     def self.signup(params)
-      pass = Digest::SHA1.hexdigest(Guid.new.to_s)
       user = new(:email                 => params['email'],
                  :first_name            => params['first_name'],
                  :last_name             => params['last_name'],
-                 :password              => pass,
-                 :password_confirmation => pass)
+                 :password              => params['password'],
+                 :password_confirmation => params['confirm_password'],
+                 :enabled               => true)
       user.save
       user
     end
