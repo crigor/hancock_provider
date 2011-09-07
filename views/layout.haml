@@ -10,5 +10,11 @@
         .container
           %h3
             %a{:href => "/"}="PinoyRB"
+          %ul
+            %li
+              -if session_user
+                %a{:href => "/sso/logout"} Sign out
+              -else
+                %a{:href => "/sso/login"} Log in
     .container{:style => "margin-top: 60px"}
       = yield

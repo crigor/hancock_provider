@@ -13,9 +13,8 @@ class HancockProvider < Hancock::SSO::App
   set :public, 'public'
 
   get '/' do
-    #erb "hello"
-    redirect '/sso/login' unless session_user
-    erb "<h2>Hello <%= session_user.full_name %> <%= session.inspect %> <a href='/sso/logout'>Log out</a>"
+    @consumers = Hancock::Consumer.all
+    haml :index
   end
   get '/sso/signup' do
     haml :signup

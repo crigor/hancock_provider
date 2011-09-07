@@ -1,0 +1,11 @@
+- if session_user
+  %p
+    You are logged in as #{session_user.email}. Listed below are the PinoyRB apps
+  %ul
+    - @consumers.each do |consumer|
+      %li
+        %a{:href => "#{consumer.url}"} #{consumer.label}
+- else
+  %p
+    <a href="/sso/signup">Sign up</a> for an account if you don't have one yet. Your account will give you access to different PinoyRB apps.
+
