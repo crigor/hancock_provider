@@ -1,7 +1,6 @@
 %form{:action => '/sso/login', :method => 'POST'}
   %fieldset
-    %legend
-      Sign in
+    %legend Log in
     .clearfix
       %label{:for => 'email'}
         Email:
@@ -14,6 +13,6 @@
         %input{:type => 'password', :name => 'password', :class => "xlarge"}
     .actions
       %button{:type => 'submit', :class => "btn primary"}
-        Login
+        Log in
       or
-      %a{:href => '/sso/signup', :class => "btn"} Signup
+      %a{:href => '/sso/signup', :class => "btn"} Sign up
